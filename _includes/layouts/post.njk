@@ -4,6 +4,10 @@ templateClass: tmpl-post
 ---
 <h1>{{ title }}</h1>
 
+<div class="byline"><time datetime="{{ date.toISOString() }}">{{ date.toDateString().split(' ').slice(1).join(' ') }}</time> by Nolan Lawson</div>
+
+<img src={{ image }} alt="{{ alt }}" />
+
 {{ content | safe }}
 
 <hr>
