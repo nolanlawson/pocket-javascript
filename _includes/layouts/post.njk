@@ -4,9 +4,17 @@ templateClass: tmpl-post
 ---
 <h1>{{ title }}</h1>
 
-<div class="byline"><time datetime="{{ date.toISOString() }}">{{ date.toDateString().split(' ').slice(1).join(' ') }}</time> by Nolan Lawson</div>
+{% if date %}
+<div class="byline">
+    <time datetime="{{ date.toISOString() }}">{{ date.toDateString().split(' ').slice(1).join(' ') }}</time>
+    by
+    <a href="https://nolanlawson.com" rel="author">Nolan Lawson</a>
+</div>
+{% endif %}
 
+{% if image %}
 <img src={{ image }} alt="{{ alt }}" />
+{%  endif %}
 
 {{ content | safe }}
 
