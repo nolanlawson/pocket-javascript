@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta rel="shortcut icon" type="image/x-icon" href="{{ metadata.favicon }}">
     <title>{{ title or metadata.title }}</title>
     <meta name="description" content="{{ description or metadata.description }}">
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
@@ -13,7 +14,13 @@
   </head>
   <body>
     <header>
-      <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
+      <h1 class="home">
+          <a href="{{ '/' | url }}">
+              <img class="logo" src="{{ metadata.logo }}" alt="{{ metadata.title }}" width="375"/>
+          </a>
+      </h1>
+
+      <h2 class="sub-home">{{ metadata.subtitle }}</h2>
 
       {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
       <ul class="nav">

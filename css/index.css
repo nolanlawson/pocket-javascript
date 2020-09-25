@@ -7,6 +7,7 @@
   --navy: #17050F;
   --blue: #082840;
   --white: #fff;
+  --darklightgray: #adadad;
 }
 * {
   box-sizing: border-box;
@@ -14,10 +15,11 @@
 html,
 body {
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   font-family: system-ui, sans-serif;
   color: var(--darkgray);
   background-color: var(--white);
+  max-width: 1000px;
 }
 p:last-child {
   margin-bottom: 0;
@@ -117,9 +119,9 @@ pre {
 /* Header */
 .home {
   padding: 0 1rem;
-  float: left;
   margin: 1rem 0; /* 16px /16 */
   font-size: 1em; /* 16px /16 */
+  text-align: center;
 }
 .home :link:not(:hover) {
   text-decoration: none;
@@ -129,7 +131,6 @@ pre {
 .nav {
   padding: 0;
   list-style: none;
-  float: left;
   margin-left: 1em;
 }
 .nav-item {
@@ -227,4 +228,17 @@ a[href].direct-link:focus:visited,
 
 .byline {
   padding: 1rem 0;
+}
+.logo {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.sub-home {
+  font-size: 1rem;
+  text-align: center;
+  font-weight: normal;
+  color: var(--darklightgray);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
 }
