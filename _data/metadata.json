@@ -1,9 +1,9 @@
 {
-  "title": "Your Blog Name",
-  "url": "https://example.com/",
-  "description": "I am writing about my experiences as a naval navel-gazer.",
+  "title": "Pocket JavaScript",
+  "url": "https://pockerjavascript.com/",
+  "description": "Blog by Nolan Lawson about JavaScript on mobile devices",
   "feed": {
-    "subtitle": "I am writing about my experiences as a naval navel-gazer.",
+    "subtitle": "Blog by Nolan Lawson about JavaScript on mobile devices",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
     "id": "https://example.com/"
@@ -13,8 +13,8 @@
     "url": "https://example.com/feed/feed.json"
   },
   "author": {
-    "name": "Your Name Here",
-    "email": "youremailaddress@example.com",
-    "url": "https://example.com/about-me/"
+    "name": "Nolan Lawson",
+    "email": "nolan@nolanlawson.com",
+    "url": "https://nolanlawson.com"
   }
 }
