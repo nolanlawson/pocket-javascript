@@ -1,9 +1,9 @@
 ---
+layout: layouts/post.njk
 title: "Bootup"
 date: 2015-02-03T01:05:55.000Z
 image: /img/phones.jpeg
 alt: "Photo of phones on a desk with JavaScript logo on them"
-layout: layouts/post.njk
 ---
 
 I decided to start a new blog, about a subject that's become very fascinating to me: JavaScript on mobile devices.

@@ -244,3 +244,9 @@ a[href].direct-link:focus:visited,
   letter-spacing: 0.2em;
   margin: 0 0 2.5rem 0;
 }
+
+figcaption {
+  text-align: center;
+  color: var(--darklightgray);
+  font-size: 0.9rem;
+}
