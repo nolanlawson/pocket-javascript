@@ -18,7 +18,7 @@ Trust me, I've tried. The other methods don't even come close.
 
 Here's a video showing a JavaScript animation, which I rewrote using hardware-accelerated CSS transitions:
 
-<lite-youtube videoid="JkOdrvVXG80" style="background-image: url('/img/youtube-thumbnail-1.webp');">
+<lite-youtube videoid="JkOdrvVXG80" style="background-image: url('/img/youtube-thumbnail-1.jpg');">
   <div class="lty-playbtn"></div>
 </lite-youtube>
 
