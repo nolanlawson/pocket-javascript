@@ -128,7 +128,12 @@ Thanks to ServiceWorker, subsequent loads of the page aren't constrained by the 
 
 Since my goal was to make this app perform at 60 FPS even on substandard mobile devices, I chose Paul Lewis' famous [FLIP technique](https://aerotwist.com/blog/flip-your-animations/) for dynamic animations, using only hardware-accelerated CSS properties (i.e. `transform` and `opacity`). The result is this beautiful [Material Design](https://www.google.com/design/spec/material-design/introduction.html)\-style animation, which runs great even on my ancient Galaxy Nexus phone:
 
-
+<div class="videowrap">
+    <video style="max-width:100%;" poster="//nolanlawson.s3.amazonaws.com/vid/SlimySelfishHermitcrab.png" controls="" width="400">
+      <source src="//nolanlawson.s3.amazonaws.com/vid/SlimySelfishHermitcrab.webm" type="video/webm">
+      <source src="//nolanlawson.s3.amazonaws.com/vid/SlimySelfishHermitcrab.mp4" type="video/mp4">
+    </video>
+</div>
 
 The best part about FLIP animations is that they combine the flexibility of JavaScript with the performance of CSS animations. So although the Pokémon's initial state isn't pre-determined, we can still animate from anywhere in the list to a fixed position in the detail view, without sacrificing any frames. We can also run quite a few animations in parallel – notice that the background fill, the sprite movement, and the panel slide are three separate animations.
 
@@ -143,7 +148,7 @@ Of course, any webapp can suffer from slowdowns if you're not careful to keep an
 3.  Be careful what libraries you choose! I'm using [MUI](http://muicss.com/) as my "Material" CSS library, which is great for bootstrapping, but sadly I discovered that it often wasn't doing the optimal thing for performance. So I ended up having to re-implement parts of it myself. For instance, the side menu was originally being animated using `margin-left` instead of `transform`, which leads to [janky animations on mobile](https://youtu.be/Q-nxiBNxCA4).
 4.  Event listeners are a menace. At one point MUI was adding an event listener on every `<li>` (for the "ripple" effect), which slowed down even the hardware-accelerated CSS animations due to memory usage. Luckily the Chrome Dev Tools has a "Show scrolling perf issues" checkbox, which immediately revealed the problem:
 
-<img src="https://images.squarespace-cdn.com/content/v1/54d00072e4b0c38f7e184ee0/1447263557526-6FW1PIUEKNBJ0PJLA1D1/ke17ZwdGBToddI8pDm48kDKokkWuRNdA\_8rDvpy94Y97gQa3H78H3Y0txjaiv\_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTma7LP-0IZKq105DwdgzdKojYWAAfnm65SfOpxGXCk1kYFAsL0acpsmUOgyC32oPyH/image-asset.png" alt="" />
+<img src="/img/touch-listener.png" alt="Screenshot of Chrome with the words touch listener on every pokemon button" />
 
 To work around this, I attached a single event listener to the entire `<ul>`, which is responsible for animating the ripple effect on individual `<li>`s.
 
@@ -169,7 +174,12 @@ There are still more improvements to make to this app. Some unanswered questions
 2.  **How to update the ServiceWorker?** I'm versioning all the data I store in the ServiceWorker Cache, but I'm not sure how to evict stale data for existing users. Currently they need to refresh the page or restart their browser so that the ServiceWorker can update, but I'd like to do it live somehow.
 3.  **How to control the app banner?** Chrome will show an "install to home screen" banner if you visit the site twice in the same week (with some heuristics), but I really like the way [Flipkart Lite](http://flipkart.com) captures the banner event so that they can launch it themselves. It feels like a more streamlined experience.
 
-
+<div class="videowrap">
+    <video style="max-width:100%;" poster="//nolanlawson.s3.amazonaws.com/vid/pokedex-install-banner.png" controls="" width="400">
+      <source src="//nolanlawson.s3.amazonaws.com/vid/pokedex-install-banner.webm" type="video/webm">
+      <source src="//nolanlawson.s3.amazonaws.com/vid/pokedex-install-banner.mp4" type="video/mp4">
+    </video>
+</div>
 
 ## Conclusion
 

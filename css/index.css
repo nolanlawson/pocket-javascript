@@ -35,11 +35,8 @@ p,
 .tmpl-post li {
   line-height: 1.45;
 }
-a[href] {
+a[href], a[href]:visited {
   color: var(--blue);
-}
-a[href]:visited {
-  color: var(--navy);
 }
 main {
   padding: 1rem;

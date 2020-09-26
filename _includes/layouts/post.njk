@@ -8,7 +8,7 @@ templateClass: tmpl-post
   <div class="byline">
       Published
       <time datetime="{{ date.toISOString() }}">
-        {{ date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) }}
+        {{ date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/New_York' }) }}
       </time>
       by
       <a href="/about" rel="author">Nolan Lawson</a>
