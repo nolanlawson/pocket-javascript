@@ -8,6 +8,7 @@
   --blue: #082840;
   --white: #fff;
   --darklightgray: #adadad;
+  --mainwidth: 37.5rem;  /* 600px /16 */
 }
 * {
   box-sizing: border-box;
@@ -19,7 +20,7 @@ body {
   font-family: system-ui, sans-serif;
   color: var(--darkgray);
   background-color: var(--white);
-  max-width: 1000px;
+  max-width: var(--mainwidth);
 }
 p:last-child {
   margin-bottom: 0;
@@ -27,7 +28,7 @@ p:last-child {
 p,
 .tmpl-post li,
 img {
-  max-width: 37.5em; /* 600px /16 */
+  max-width: 100%;
 }
 p,
 .tmpl-post li {
@@ -227,7 +228,7 @@ a[href].direct-link:focus:visited,
 }
 
 .byline {
-  padding: 1rem 0;
+  padding: 1rem 0 2rem 0;
 }
 .logo {
   max-width: 100%;
@@ -241,4 +242,5 @@ a[href].direct-link:focus:visited,
   color: var(--darklightgray);
   text-transform: uppercase;
   letter-spacing: 0.2em;
+  margin: 0 0 2.5rem 0;
 }

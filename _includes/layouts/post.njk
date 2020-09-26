@@ -6,6 +6,7 @@ templateClass: tmpl-post
 
 {% if date %}
 <div class="byline">
+    Published
     <time datetime="{{ date.toISOString() }}">{{ date.toDateString().split(' ').slice(1).join(' ') }}</time>
     by
     <a href="https://nolanlawson.com" rel="author">Nolan Lawson</a>

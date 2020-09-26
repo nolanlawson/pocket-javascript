@@ -2,7 +2,7 @@
 title: "Bootup"
 date: 2015-02-03T01:05:55.000Z
 image: /img/phones.jpeg
-alt: "Photo of phones on a desk with JavaScript log on them"
+alt: "Photo of phones on a desk with JavaScript logo on them"
 layout: layouts/post.njk
 ---
 
