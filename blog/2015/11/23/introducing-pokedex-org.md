@@ -29,10 +29,13 @@ I decided to put these ideas together and build a webapp with a rich, interactiv
 For those uninitiated to the world of Pokémon, a Pokédex is an encyclopedia of the hundreds of species of cutesy critters, as well as their stats, types, evolutions, and moves. The data is surprisingly vast for what is supposedly a children's game (read up on [Effort Values](http://bulbapedia.bulbagarden.net/wiki/Effort_values) if you want your brain to hurt over how deep this can get). So it's the perfect target for an ambitious web application.
 
 <div class="videowrap">
-    <video style="max-width:100%;" poster="/img/DeliriousNeedyAnophelesmosquito.png" controls="" width="400">
+    <video style="max-width:100%;" poster="/img/DeliriousNeedyAnophelesmosquito.png" controls="" width="400" aria-describedby="video1">
       <source src="/vid/DeliriousNeedyAnophelesmosquito.webm" type="video/webm">
       <source src="/vid/DeliriousNeedyAnophelesmosquito.mp4" type="video/mp4">
     </video>
+</div>
+<div class="sr-only" id="video1">
+  Video showing scrolling a list of pokemon, clicking on Pikachua and it shows stats for Pikachu.
 </div>
 
 The first issue is getting the data, which is easy thanks to the wonderful [Pokéapi](http://pokeapi.co/). The second issue is that, if we want the app to work offline, the database is far too large to keep in memory, so we'll need some clever use of IndexedDB and/or ServiceWorker.
@@ -116,12 +119,15 @@ The "do everything in a web worker" approach also helps out with progressive ren
 Of course, ServiceWorker is also storing all of the static "app shell" – HTML, CSS, JavaScript, and images. I'm using a local-then-remote strategy to ensure the best possible offline experience, with code largely borrowed (well, stolen really) from Jake's Archibald's lovely [SVGOMG](https://github.com/jakearchibald/svgomg). Like SVGOMG, the app also displays a little toast message to reassure the user that yes, the app works offline. (This is new tech; users need to be educated about it!)
 
 <div class="videowrap">
-    <video style="max-width:100%;" poster="/img/offline-pokedex.png" controls="" width="400">
+    <video style="max-width:100%;" poster="/img/offline-pokedex.png" controls="" width="400" aria-describedby="video2">
       <source src="/vid/offline-pokedex.webm" type="video/webm">
       <source src="/vid/offline-pokedex.mp4" type="video/mp4">
     </video>
 </div>
-
+<div class="sr-only" id="video2">
+  Video showing "ready to work offline," "more info" button, the button is clicked, a modal dialog says "That's right
+  a website that works offline."
+</div>
 
 Thanks to ServiceWorker, subsequent loads of the page aren't constrained by the network at all. So after the first visit, the entire site is available locally, meaning it renders in less than a second, or slightly more depending on the speed of the device.
 
@@ -130,10 +136,14 @@ Thanks to ServiceWorker, subsequent loads of the page aren't constrained by the 
 Since my goal was to make this app perform at 60 FPS even on substandard mobile devices, I chose Paul Lewis' famous [FLIP technique](https://aerotwist.com/blog/flip-your-animations/) for dynamic animations, using only hardware-accelerated CSS properties (i.e. `transform` and `opacity`). The result is this beautiful [Material Design](https://www.google.com/design/spec/material-design/introduction.html)\-style animation, which runs great even on my ancient Galaxy Nexus phone:
 
 <div class="videowrap">
-    <video style="max-width:100%;" poster="/img/SlimySelfishHermitcrab.png" controls="" width="400">
+    <video style="max-width:100%;" poster="/img/SlimySelfishHermitcrab.png" controls="" width="400" aria-describedby="video3">
       <source src="/vid/SlimySelfishHermitcrab.webm" type="video/webm">
       <source src="/vid/SlimySelfishHermitcrab.mp4" type="video/mp4">
     </video>
+</div>
+<div class="sr-only" id="video3">
+  Video showing clicking Charmander and it animates to Charmander's stats page, animating the borders as well as the
+  pokemon sprite itself.
 </div>
 
 The best part about FLIP animations is that they combine the flexibility of JavaScript with the performance of CSS animations. So although the Pokémon's initial state isn't pre-determined, we can still animate from anywhere in the list to a fixed position in the detail view, without sacrificing any frames. We can also run quite a few animations in parallel – notice that the background fill, the sprite movement, and the panel slide are three separate animations.
@@ -176,10 +186,13 @@ There are still more improvements to make to this app. Some unanswered questions
 3.  **How to control the app banner?** Chrome will show an "install to home screen" banner if you visit the site twice in the same week (with some heuristics), but I really like the way [Flipkart Lite](http://flipkart.com) captures the banner event so that they can launch it themselves. It feels like a more streamlined experience.
 
 <div class="videowrap">
-    <video style="max-width:100%;" poster="/img/pokedex-install-banner.png" controls="" width="400">
+    <video style="max-width:100%;" poster="/img/pokedex-install-banner.png" controls="" width="400" aria-describedby="video4">
       <source src="/vid/pokedex-install-banner.webm" type="video/webm">
       <source src="/vid/pokedex-install-banner.mp4" type="video/mp4">
     </video>
+</div>
+<div class="sr-only" id="video4">
+  Video showing an install banner saying "Pokedex.org - add to home screen"
 </div>
 
 ## Conclusion
