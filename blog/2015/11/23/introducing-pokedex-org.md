@@ -29,7 +29,7 @@ I decided to put these ideas together and build a webapp with a rich, interactiv
 For those uninitiated to the world of Pokémon, a Pokédex is an encyclopedia of the hundreds of species of cutesy critters, as well as their stats, types, evolutions, and moves. The data is surprisingly vast for what is supposedly a children's game (read up on [Effort Values](http://bulbapedia.bulbagarden.net/wiki/Effort_values) if you want your brain to hurt over how deep this can get). So it's the perfect target for an ambitious web application.
 
 <div class="videowrap">
-    <video style="max-width:100%;" poster="/vid/DeliriousNeedyAnophelesmosquito.png" controls="" width="400">
+    <video style="max-width:100%;" poster="/img/DeliriousNeedyAnophelesmosquito.png" controls="" width="400">
       <source src="/vid/DeliriousNeedyAnophelesmosquito.webm" type="video/webm">
       <source src="/vid/DeliriousNeedyAnophelesmosquito.mp4" type="video/mp4">
     </video>
@@ -116,7 +116,7 @@ The "do everything in a web worker" approach also helps out with progressive ren
 Of course, ServiceWorker is also storing all of the static "app shell" – HTML, CSS, JavaScript, and images. I'm using a local-then-remote strategy to ensure the best possible offline experience, with code largely borrowed (well, stolen really) from Jake's Archibald's lovely [SVGOMG](https://github.com/jakearchibald/svgomg). Like SVGOMG, the app also displays a little toast message to reassure the user that yes, the app works offline. (This is new tech; users need to be educated about it!)
 
 <div class="videowrap">
-    <video style="max-width:100%;" poster="/vid/offline-pokedex.png" controls="" width="400">
+    <video style="max-width:100%;" poster="/img/offline-pokedex.png" controls="" width="400">
       <source src="/vid/offline-pokedex.webm" type="video/webm">
       <source src="/vid/offline-pokedex.mp4" type="video/mp4">
     </video>
@@ -130,7 +130,7 @@ Thanks to ServiceWorker, subsequent loads of the page aren't constrained by the 
 Since my goal was to make this app perform at 60 FPS even on substandard mobile devices, I chose Paul Lewis' famous [FLIP technique](https://aerotwist.com/blog/flip-your-animations/) for dynamic animations, using only hardware-accelerated CSS properties (i.e. `transform` and `opacity`). The result is this beautiful [Material Design](https://www.google.com/design/spec/material-design/introduction.html)\-style animation, which runs great even on my ancient Galaxy Nexus phone:
 
 <div class="videowrap">
-    <video style="max-width:100%;" poster="/vid/SlimySelfishHermitcrab.png" controls="" width="400">
+    <video style="max-width:100%;" poster="/img/SlimySelfishHermitcrab.png" controls="" width="400">
       <source src="/vid/SlimySelfishHermitcrab.webm" type="video/webm">
       <source src="/vid/SlimySelfishHermitcrab.mp4" type="video/mp4">
     </video>
@@ -176,7 +176,7 @@ There are still more improvements to make to this app. Some unanswered questions
 3.  **How to control the app banner?** Chrome will show an "install to home screen" banner if you visit the site twice in the same week (with some heuristics), but I really like the way [Flipkart Lite](http://flipkart.com) captures the banner event so that they can launch it themselves. It feels like a more streamlined experience.
 
 <div class="videowrap">
-    <video style="max-width:100%;" poster="/vid/pokedex-install-banner.png" controls="" width="400">
+    <video style="max-width:100%;" poster="/img/pokedex-install-banner.png" controls="" width="400">
       <source src="/vid/pokedex-install-banner.webm" type="video/webm">
       <source src="/vid/pokedex-install-banner.mp4" type="video/mp4">
     </video>
