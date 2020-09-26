@@ -12,7 +12,7 @@ Historically, though, hybrid and web apps have lagged behind their native counte
 
 For the mobile web to be taken seriously, it needs to provide the same smooth performance that we've come to expect from native apps. In short, it needs to close the UX gap.
 
-<img src="/img/nolan-talk.png" alt="Picture of the author in front of a projection saying Mobile HTML5 apps that can compete with native" />
+<img src="/img/nolan-talk.jpg" alt="Picture of the author in front of a projection saying Mobile HTML5 apps that can compete with native" />
 
 I recently gave a talk at [Brooklyn JS](http://brooklynjs.com/) where I shared some tricks for building web and hybrid apps with near-native performance. It wasn't recorded, but you can read [the full slides and speaker notes](http://nolanlawson.github.io/brooklyn-js-html5-mobile-apps/#/) online.
 
