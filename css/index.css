@@ -9,6 +9,7 @@
   --white: #fff;
   --darklightgray: #adadad;
   --mainwidth: 37.5rem;  /* 600px /16 */
+  --lightblue: #5f86a7;
 }
 * {
   box-sizing: border-box;
@@ -249,4 +250,13 @@ figcaption {
   text-align: center;
   color: var(--darklightgray);
   font-size: 0.9rem;
+}
+
+figcaption a[href], figcaption a[href]:visited {
+  color: var(--lightblue);
+}
+
+.videowrap {
+  max-width: 100%;
+  text-align: center;
 }

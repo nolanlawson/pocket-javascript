@@ -8,9 +8,9 @@ date: 2016-01-25T17:33:13.000Z
 
 Imagine yourself as a young court composer in the 18th century. You've just arrived in Vienna, fresh from the academy, with one goal in mind: to improve your craft, and to learn from the old masters. You've heard the stunning operas of Mozart, the ponderous fugues of Bach, and you've dreamed of wowing audiences with your own contributions to this storied art form.
 
-<img src="https://images.squarespace-cdn.com/content/v1/54d00072e4b0c38f7e184ee0/1453652236343-9AG7DI650WRWO4D75IS8/ke17ZwdGBToddI8pDm48kLzxjX0ewCOP-k4yiI1x\_sl7gQa3H78H3Y0txjaiv\_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0jG2lbcDYBOeMi4OFSYem8B3JXwsqs3UDR6lQFnfsK5UTt71u4\_-9u7ALFvJimN92w/https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%253AAdolph\_Menzel\_-\_Fl%25C3%25B6tenkonzert\_Friedrichs\_des\_Gro%25C3%259Fen\_in\_Sanssouci\_-\_Google\_Art\_Project.jpg" alt="Source: Wikimedia Commons" />
+<img src="/img/sanssouci.jpg" alt="Classical painting: playing a flute in front of sheet music for an audience" />
 
-Source: Wikimedia Commons
+<figcaption>Source: <a href="https://en.wikipedia.org/wiki/Frederick_the_Great_Playing_the_Flute_at_Sanssouci">Wikimedia Commons</a></figcaption>
 
 You're excited by recent advances to improve the sonority of instruments – after all, the violin's [F-hole](https://en.wikipedia.org/wiki/F-hole) was only perfected in your lifetime. You're also intrigued by the strange note systems described by explorers to the Far Orient, completely unlike the 12-note chromatic scale you learned in school. You've even heard of the complex rhythms practiced in Africa, far more intricate than the lock-step percussion of standard European fare.
 
@@ -20,7 +20,9 @@ The master sighs and places a hand on your shoulder. The landscape of modern com
 
 "You see," he says, "we realized some time ago that annotations like *Pizzicato* and *Allegro* are too difficult for non-Italian speakers to understand. Furthermore, they clutter up the page, and they take too much time for the musicians to sight-read. So we are gradually replacing them with symbols that explain the same concept."
 
-<img src="https://images.squarespace-cdn.com/content/v1/54d00072e4b0c38f7e184ee0/1453743297981-LH85OF31WDJ3CH5FMHWR/ke17ZwdGBToddI8pDm48kK\_WYW-CmAZvywtR8MY4S497gQa3H78H3Y0txjaiv\_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0hveExjbswnAj1UrRPScjfBxETrsn4xj0\_v2LvZpRX0W9-2nrtx2XF86c3Na1SQeDw/image-asset.jpeg" alt="" />
+<img src="/img/sheet.jpg" alt="Photo of sheet music" />
+
+<figcaption>Via www.songsimian.com on <a href="https://www.flickr.com/photos/186095195@N02/49430612328">Flickr</a> (<a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a>)</figcaption>
 
 "Ah," you say, a bit surprised at the dull subject matter. "That does make sense. Musicians should be able to perform at their peak potential, in order to better please audiences."
 

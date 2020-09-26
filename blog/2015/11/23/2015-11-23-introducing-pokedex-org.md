@@ -26,7 +26,12 @@ I decided to put these ideas together and build a webapp with a rich, interactiv
 
 For those uninitiated to the world of Pokémon, a Pokédex is an encyclopedia of the hundreds of species of cutesy critters, as well as their stats, types, evolutions, and moves. The data is surprisingly vast for what is supposedly a children's game (read up on [Effort Values](http://bulbapedia.bulbagarden.net/wiki/Effort_values) if you want your brain to hurt over how deep this can get). So it's the perfect target for an ambitious web application.
 
-
+<div class="videowrap">
+    <video style="max-width:100%;" poster="//nolanlawson.s3.amazonaws.com/vid/DeliriousNeedyAnophelesmosquito.png" controls="" width="400">
+      <source src="//nolanlawson.s3.amazonaws.com/vid/DeliriousNeedyAnophelesmosquito.webm" type="video/webm">
+      <source src="//nolanlawson.s3.amazonaws.com/vid/DeliriousNeedyAnophelesmosquito.mp4" type="video/mp4">
+    </video>
+</div>
 
 The first issue is getting the data, which is easy thanks to the wonderful [Pokéapi](http://pokeapi.co/). The second issue is that, if we want the app to work offline, the database is far too large to keep in memory, so we'll need some clever use of IndexedDB and/or ServiceWorker.
 
@@ -34,10 +39,11 @@ For this app, I decided to use [PouchDB](http://pouchdb.com/) for the Pokémon d
 
 However, it's also true that the Pokémon data isn't immediately available when the site is first loaded, because it takes awhile to sync from the server. So I'm also using a fallback strategy of "local first, then remote":
 
-<img src="https://images.squarespace-cdn.com/content/v1/54d00072e4b0c38f7e184ee0/1447261777028-79FC7ZX2TA00GVV7BVAK/ke17ZwdGBToddI8pDm48kDHOHCQxCNZXnQKbDn\_8sit7gQa3H78H3Y0txjaiv\_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTm\_\_Cw\_XmXWPHiqqqn5a2PdBCfhacAsnWeh08TueGqNOwseB82ih5MzHDwxIPMOxTt/image-asset.png" alt="" />
+<img src="/img/diagram.png" alt="Diagram showing an offline-first architecture where we try a local PouchDB first and fall back to the network, and PouchDB continually syncs with Cloudant" />
 
 When the site first loads, PouchDB starts syncing with the remote database, which in my case is [Cloudant](http://cloudant.com) (a CouchDB-as-a-service provider). Since PouchDB has a dual API for both local and remote, it's easy to query the local database and then fall back to the remote database if that fails:
 
+```js
 async function getById(id) {
   try {
     return await localDB.get(id);
@@ -45,6 +51,7 @@ async function getById(id) {
     return await remoteDB.get(id);
   }
 }
+```
 
 (Yes, I also decided to use [ES7 async/await](http://pouchdb.com/2015/03/05/taming-the-async-beast-with-es7.html) for this app, using [Regenerator](https://github.com/facebook/regenerator) and [Babel](http://babeljs.io). It adds < 4KB minified/gzipped to the build size, so it's well worth the developer convenience.)
 
@@ -57,8 +64,8 @@ I also heavily incorporated [web workers](http://www.html5rocks.com/en/tutorials
 From reading [the](http://www.html5rocks.com/en/tutorials/workers/basics/) [literature](http://ejohn.org/blog/web-workers/) on web workers, you might be forgiven for thinking their usefulness is limited to checksumming, parsing, and other computationally expensive tasks. However, it turns out that Angular 2 is planning on an architecture where [nearly the entire application lives inside of the web worker](https://docs.google.com/document/d/1M9FmT05Q6qpsjgvH1XvCm840yn2eWEg0PMskSQz7k4E), which in theory should increase parallelism and reduce jank, especially on mobile. Similar techniques have also been explored for [Flux](https://medium.com/@nsisodiya/flux-inside-web-workers-cc51fb463882#.ooz0ho5si) and [Ember](http://blog.runspired.com/2015/06/05/using-webworkers-to-bring-native-app-best-practices-to-javascript-spas/), although nothing solid has been shipped yet.
 
 > “The idea is to run basically the whole app in \[a web worker\], and send rendering instructions to the UI side.”
-
-— Brian Ford, Angular core developer
+>
+> — Brian Ford, Angular core developer
 
 ([Source](https://twitter.com/briantford/status/649332944478171136))
 
@@ -68,13 +75,13 @@ I modeled the app architecture after React/Flux, but in this case I'm using the 
 
 The app structure looks like this:
 
-<img src="https://images.squarespace-cdn.com/content/v1/54d00072e4b0c38f7e184ee0/1447261861411-EAI4MT1HMHNBTGLAC2TA/ke17ZwdGBToddI8pDm48kGgXxARK6IdC0Po9yv\_ygQp7gQa3H78H3Y0txjaiv\_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65\_fV7S1UVY-WloYW0Vg-N42VRJzVk7hZx6IBLTp4D1J-raztBuS3WUfc\_ZsVm9Mi1E6FasEnQ/image-asset.png" alt="" />
+<img src="/img/diagram2.png" alt="Diagram showing the web worker handling the actions, rendering virtual dom, and diffing, and the UI thread handling applying the patch, generating the view, and dispatching an action" />
 
 Note that the entire "Flux" application can live inside the web worker, as well as the "render" and "diff" parts of the "render/diff/patch" pipeline, since none of those operations rely on the DOM. The only thing that needs to be done on the UI thread is the patch, i.e. the minimal set of DOM instructions to be applied. And since this patch operation is (usually) small, the serialization costs should be negligible.
 
 To illustrate, here's a timeline recording from the Chrome profiler, using a Nexus 5 running Chrome 47 on Android 5.1.1. The timeline starts from the moment the user clicks on a Pokémon in the list, which is when the "detail" panel is patched and then slides up into view:
 
-<img src="https://images.squarespace-cdn.com/content/v1/54d00072e4b0c38f7e184ee0/1448068755113-AVU8XZREHK7HE4M4DM1Q/ke17ZwdGBToddI8pDm48kOxHfnIo0WWMMcffLC\_ztXgUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N\_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcTzr9M11yLK8nFHNFpcv-RpsyT\_xDY0twU4\_1AypzkG7zpuMDphy6\_W6ov8GKeWsT/image-asset.png" alt="" />
+<img src="/img/trace1.png" alt="Trace showing user clicks, apply patch, compute FLIP animation" />
 
 (The delay between applying the patch and calculating the FLIP animation is intentional; it's to allow the "ripple" animation to play.)
 
@@ -82,7 +89,7 @@ The important thing to notice is that the UI thread is totally unblocked between
 
 Now let's see what it looks like if I move those operations back to the UI thread, by removing the worker:
 
-<img src="https://images.squarespace-cdn.com/content/v1/54d00072e4b0c38f7e184ee0/1448068778370-LNSXCJSCQ42RQT87LS9N/ke17ZwdGBToddI8pDm48kJ1zoDfu-SYd2g2DGbmKMd0UqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N\_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcepicAttmxlximTrdJa6sfdEPGyqshosZN1i-ZYRX2phoLdI6Ft6aHdn3xzEz166G/image-asset.png" alt="" />
+<img src="/img/trace2.png" alt="Trace showing compute colors, queue IndexedDB operations, IndexedDB callbacks, render, diff, apply patch, compute FLIP animations" />
 
 Whoa nelly, there's a lot of action happening on the UI thread! Besides IndexedDB, which introduces some slight DOM-blocking, there's also the rendering/diffing operation, which is considerably more expensive than the patching.
 
@@ -92,9 +99,9 @@ You'll also notice that both versions take roughly the same amount of time (300-
 
 Another benefit of Virtual DOM is that we can pre-render the initial state of the app on the server side. I used [vdom-to-html](https://github.com/nthtran/vdom-to-html/) to render the first 30 Pokémon and inline that HTML directly in the page. (HTML in our HTML! what a concept.) To re-hydrate that Virtual DOM on the client side, it's as simple as using [vdom-as-json](https://github.com/nolanlawson/vdom-as-json) to build up the initial Virtual DOM state.
 
-<img src="https://images.squarespace-cdn.com/content/v1/54d00072e4b0c38f7e184ee0/1448210643454-7WPXF5ZNJJ55WH2X4PWJ/ke17ZwdGBToddI8pDm48kFQKKdNMzhgO1rESNVqzC7AUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N\_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcAmLtM0pJdTYUwyM4rqUJJIXasF\_b-3pY9KjuSvr1PSFpJQvof1NllXmktGK9L560/image-asset.png" alt="Pokedex.org with JavaScript disabled." />
+<img src="/img/pokedex.png" alt="Pokedex.org with JavaScript disabled, it still works." />
 
-Pokedex.org with JavaScript disabled.
+<figcaption>Pokedex.org with JavaScript disabled.</figcaption>
 
 I'm also inlining most of the critical CSS and JavaScript, with non-critical CSS loaded asynchronously thanks to a [pretty nifty hack](http://stackoverflow.com/a/32614409/680742). The [pouchdb-load](https://github.com/nolanlawson/pouchdb-load) plugin is also being leveraged for faster initial replication.
 
@@ -106,6 +113,12 @@ The "do everything in a web worker" approach also helps out with progressive ren
 
 Of course, ServiceWorker is also storing all of the static "app shell" – HTML, CSS, JavaScript, and images. I'm using a local-then-remote strategy to ensure the best possible offline experience, with code largely borrowed (well, stolen really) from Jake's Archibald's lovely [SVGOMG](https://github.com/jakearchibald/svgomg). Like SVGOMG, the app also displays a little toast message to reassure the user that yes, the app works offline. (This is new tech; users need to be educated about it!)
 
+<div class="videowrap">
+    <video style="max-width:100%;" poster="//nolanlawson.s3.amazonaws.com/vid/offline-pokedex.png" controls="" width="400">
+      <source src="//nolanlawson.s3.amazonaws.com/vid/offline-pokedex.webm" type="video/webm">
+      <source src="//nolanlawson.s3.amazonaws.com/vid/offline-pokedex.mp4" type="video/mp4">
+    </video>
+</div>
 
 
 Thanks to ServiceWorker, subsequent loads of the page aren't constrained by the network at all. So after the first visit, the entire site is available locally, meaning it renders in less than a second, or slightly more depending on the speed of the device.
