@@ -2,6 +2,7 @@
 layout: layouts/post.njk
 title: "Smooth animations in CSS"
 date: 2015-02-03T03:18:27.000Z
+hasYoutube: true
 ---
 
 Working on the Squarespace [Blog app for Android](https://play.google.com/store/apps/details?id=com.squarespace.android.blog), one of the biggest challenges is that the app is half-native, half-web.
