@@ -268,3 +268,7 @@ figcaption a[href], figcaption a[href]:visited {
   clip: rect(0,0,0,0);
   border: 0;
 }
+
+blockquote {
+  font-style: italic;
+}
