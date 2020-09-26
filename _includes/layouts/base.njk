@@ -6,7 +6,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ metadata.favicon }}">
     <title>{{ title or metadata.title }}</title>
     <meta name="description" content="{{ description or metadata.description }}">
-    {% if not environment.dev %}<meta http-equiv="Content-Security-Policy" content="script-src 'self' https://fathom.nolanlawson.com 'sha256-7t3HqvIz5lQyHL2UtdXM4aGDZ2PAqS1b+j+pd0JhcM0='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src 'self' https://www.youtube.com; media-src 'self'; object-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; child-src 'self'; worker-src 'self'">{% endif %}
+    {% if not environment.dev %}<meta http-equiv="Content-Security-Policy" content="script-src 'self' https://fathom.nolanlawson.com 'sha256-7t3HqvIz5lQyHL2UtdXM4aGDZ2PAqS1b+j+pd0JhcM0='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src 'self' https://www.youtube.com; media-src 'self'; object-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; child-src 'self'; worker-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'">{% endif %}
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     {% if hasYoutube %}<link rel="stylesheet" href="{{ '/css/lite-yt-embed.css' | url }}">{%  endif %}
     {% if hasCode %}<link rel="stylesheet" href="{{  '/css/prism-solarizedlight.css' | url }}">{% endif %}
