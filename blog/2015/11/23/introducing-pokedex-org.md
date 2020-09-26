@@ -1,6 +1,7 @@
 ---
 layout: layouts/post.njk
 title: "Introducing Pokedex.org: a progressive webapp for Pokémon fans"
+shortTitle: "Introducing Pokedex.org"
 date: 2015-11-23T15:47:00.000Z
 ---
 
